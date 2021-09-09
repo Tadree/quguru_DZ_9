@@ -18,7 +18,7 @@ public class PracticeFormPage {
     private Calendar calendar = new Calendar();
 
     public void openPage (){
-        open("/automation-practice-form");
+        open("https://demoqa.com/automation-practice-form");
     }
 
     public PracticeFormPage typeFirstName(String firstName) {
