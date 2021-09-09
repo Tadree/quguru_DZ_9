@@ -2,9 +2,12 @@ package ru.tadree;
 
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
+import helpers.Attach;
+
 
 import static io.qameta.allure.Allure.step;
 
@@ -73,5 +76,13 @@ public class FormTest {
                     .checkResultsValue(currentAddress)
                     .checkResultsValue(state + " " + city);
         });
+    }
+
+    @AfterEach
+    public void tearDown() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
     }
 }
