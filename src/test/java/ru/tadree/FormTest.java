@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
+
 import static io.qameta.allure.Allure.step;
 
 
@@ -38,39 +39,39 @@ public class FormTest {
     }
 
     @Test
-    void positiveFillTest () {
+    void positiveFillTest() {
 
         step("Open students registration form", () -> {
-        practiceFormPage.openPage();
+            practiceFormPage.openPage();
         });
 
         step("Fill students registration form", () -> {
-                    practiceFormPage.typeFirstName(firstName)
-                            .typeLastName(lastName)
-                            .typeEmail(email)
-                            .selectGender(gender)
-                            .typePhone(phone)
-                            .setDateOfBirth("01", "January", "2000")
-                            .setSubject(subject)
-                            .setHobby(hobby)
-                            .uploadPicture(picture)
-                            .setCurrentAddress(currentAddress)
-                            .setState("Uttar Pradesh")
-                            .setCity("Agra")
-                            .submit();
-                });
+            practiceFormPage.typeFirstName(firstName)
+                    .typeLastName(lastName)
+                    .typeEmail(email)
+                    .selectGender(gender)
+                    .typePhone(phone)
+                    .setDateOfBirth("01", "January", "2000")
+                    .setSubject(subject)
+                    .setHobby(hobby)
+                    .uploadPicture(picture)
+                    .setCurrentAddress(currentAddress)
+                    .setState("Uttar Pradesh")
+                    .setCity("Agra")
+                    .submit();
+        });
 
         step("Verify successful form submit", () -> {
-        practiceFormPage.checkResultsValue(firstName + " " + lastName)
-                .checkResultsValue(email)
-                .checkResultsValue(gender)
-                .checkResultsValue(phone)
-                .checkResultsValue(day + " " + month + "," + year)
-                .checkResultsValue(subject)
-                .checkResultsValue(hobby)
-                .checkResultsValue(picture)
-                .checkResultsValue(currentAddress)
-                .checkResultsValue(state + " " + city);
+            practiceFormPage.checkResultsValue(firstName + " " + lastName)
+                    .checkResultsValue(email)
+                    .checkResultsValue(gender)
+                    .checkResultsValue(phone)
+                    .checkResultsValue(day + " " + month + "," + year)
+                    .checkResultsValue(subject)
+                    .checkResultsValue(hobby)
+                    .checkResultsValue(picture)
+                    .checkResultsValue(currentAddress)
+                    .checkResultsValue(state + " " + city);
         });
     }
 }
