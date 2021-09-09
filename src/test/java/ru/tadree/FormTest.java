@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
+import static io.qameta.allure.Allure.step;
 
 
 public class FormTest {
@@ -39,24 +40,27 @@ public class FormTest {
     @Test
     void positiveFillTest () {
 
+        step("Open students registration form", () -> {
         practiceFormPage.openPage();
+        });
 
-        //заполнение формы
-        practiceFormPage.typeFirstName(firstName)
-                .typeLastName(lastName)
-                .typeEmail(email)
-                .selectGender(gender)
-                .typePhone(phone)
-                .setDateOfBirth("01","January", "2000")
-                .setSubject(subject)
-                .setHobby(hobby)
-                .uploadPicture(picture)
-                .setCurrentAddress(currentAddress)
-                .setState("Uttar Pradesh")
-                .setCity("Agra")
-                .submit();
+        step("Fill students registration form", () -> {
+                    practiceFormPage.typeFirstName(firstName)
+                            .typeLastName(lastName)
+                            .typeEmail(email)
+                            .selectGender(gender)
+                            .typePhone(phone)
+                            .setDateOfBirth("01", "January", "2000")
+                            .setSubject(subject)
+                            .setHobby(hobby)
+                            .uploadPicture(picture)
+                            .setCurrentAddress(currentAddress)
+                            .setState("Uttar Pradesh")
+                            .setCity("Agra")
+                            .submit();
+                });
 
-        //проверка введенных данных
+        step("Verify successful form submit", () -> {
         practiceFormPage.checkResultsValue(firstName + " " + lastName)
                 .checkResultsValue(email)
                 .checkResultsValue(gender)
@@ -67,6 +71,6 @@ public class FormTest {
                 .checkResultsValue(picture)
                 .checkResultsValue(currentAddress)
                 .checkResultsValue(state + " " + city);
-
+        });
     }
 }
